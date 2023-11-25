@@ -1,20 +1,15 @@
 <?php
-// Простір імен " Palmo\Core"
-namespace Palmo\Core;
 
-// Базовий клас "User" у просторі імен " Palmo\Core"
-use Palmo\Core\service\Admin as Administarator;
+use Palmo\Core\service\Db;
 
-class User {
-   public function __construct()
-   {
-       echo "User";
-   }
-}
+$dbh = (new Db())->getHandler();
+$statement = $dbh->query('select * from users');
+$users = $statement->fetchAll();
 
-$user = new User();
-echo "<br>";
-$admin = new Administarator();
+print_r($users);
+
+
+
 
 
 
