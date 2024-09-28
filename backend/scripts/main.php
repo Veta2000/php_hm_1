@@ -1,34 +1,36 @@
 <?php
-require __DIR__ . '../../vendor/autoload.php';
-session_start();
-use Palmo\Core\service\Db;
+// Створіть змінну $a і присвойте їй значення 3. Виведіть значення цієї змінної на екран.
+$a=3;
+echo "a=" . $a . "<br>";
+// Створіть змінні $a=10 і $b=2. Виведіть на екран їхню суму, різницю, добуток і частку (результат ділення).
+$a=10;
+$b=2;
 
-// Обробка форми входу
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+echo "+=" . ($a + $b) . "<br>";
+echo "-=" . ($a - $b) . "<br>";
+echo "*=" . ($a * $b) . "<br>";
+echo "/=" . ($a / $b) . "<br>";
 
-        $db = new Db();
-        $dbh = $db->getHandler();
-        $stmt = $dbh->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-        $user = $stmt->fetch();
+// Створіть змінні $c=15 і $d=2. Підсумуйте їх, а результат присвойте змінній $result. Виведіть на екран значення змінної $result.
+$c=15;
+$d=2;
+$result= $c + $d;
+echo "result=" . $result . "<br>";
 
-        if(!empty($user)) {
-            if($password === $user['password']) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                header("Location: dashboard.php");
-                exit();
-            } else {
-                $_SESSION['error'] = "Невірний пароль";
-                header("Location: /");
-                exit();
-            }
-        } else {
-            $_SESSION['error'] = "Невірний логін";
-            header("Location: /");
-            exit();
-        }
-    }
+
+// Створіть змінні $a=10, $b=2 і $c=5. Виведіть на екран їхню суму.
+$a=10;
+$b=2;
+$c=5;
+echo "a+b+c=" . ($a + $b + $c) . "<br>";
+
+// Створіть змінні $a=17 і $b=10. Відніміть від $a змінну $b і результат присвойте змінній $c. Потім створіть змінну $d, присвойте їй значення 7. Складіть змінні $c і $d, а результат запишіть у змінну $result. Виведіть на екран значення змінної $result.
+
+$a=17;
+$b=10;
+$c= $a - $b;
+$d=7;
+$result= $c +$d;
+echo "result=" . $result . "<br>";
+
+?>
